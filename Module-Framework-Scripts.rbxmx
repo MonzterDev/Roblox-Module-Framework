@@ -1,0 +1,506 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<Meta name="ExplicitAutoJoints">true</Meta>
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Folder" referent="RBXB0203E57D0F94033A59AA095F842C331">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+			<bool name="DefinesCapabilities">false</bool>
+			<string name="Name">StarterPlayerScripts</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="Folder" referent="RBXFDB2324EF98C4CC29BE7662D67FADEA4">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Controllers</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX35D6E5B1D1EA4999877A74A4EF0A62EF">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+					<bool name="DefinesCapabilities">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">ResetController</string>
+					<string name="ScriptGuid">{4786AB3A-65B1-4361-9772-22CB8F8D38F0}</string>
+					<ProtectedString name="Source"><![CDATA[local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
+
+local Player = Players.LocalPlayer
+
+local GuiController = require(script.Parent.GuiController)
+local RespawnController = require(script.Parent.RespawnController)
+local SoundsConfig = require(ReplicatedStorage.Shared.Configs.Sounds)
+
+local Button = GuiController.Guis.RightButtons.Frame.Reset
+
+local Local = {}
+local Shared = {}
+
+function Shared.OnStart()
+    Button.MouseButton1Click:Connect(Local.Reset)
+    UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+        if gameProcessedEvent then return end
+        if input.KeyCode == Enum.KeyCode.R then
+            Local.Reset()
+        end
+    end)
+end
+
+function Local.Reset()
+    local character = Player.Character
+    if character then
+        RespawnController.ForceTeleportPlayer(character)
+        SoundsConfig.PlaySound("Error")
+    end
+end
+
+
+return Shared
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
+			<Item class="ModuleScript" referent="RBX735C0D00BC3B4C469E6C152C2BB500EA">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+					<bool name="DefinesCapabilities">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">GuiController</string>
+					<string name="ScriptGuid">{FD539F00-344B-4D0D-8475-0364276EE62E}</string>
+					<ProtectedString name="Source"><![CDATA[local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+
+local Player = Players.LocalPlayer
+local PlayerGui = Player.PlayerGui
+
+local StateController = require(script.Parent.StateController)
+local SettingsConfig = require(ReplicatedStorage.Shared.Configs.Settings)
+local SoundsConfig = require(ReplicatedStorage.Shared.Configs.Sounds)
+
+local ALWAYS_ENABLED_GUIS = {
+    "Top",
+    "RightButtons",
+    "LeftButtons",
+    "Effects",
+}
+
+local BlurEffect = Instance.new("BlurEffect", Lighting)
+BlurEffect.Size = 0
+
+local Local = {}
+local Shared = {}
+
+Shared.BillboardGuis = {
+
+}
+
+Shared.Guis = {
+
+}
+
+function Shared.OnStart()
+
+end
+
+function Shared.ToggleBlurEffect(isGuiActive)
+
+end
+
+function Shared.OpenGui(gui: ScreenGui)
+
+end
+
+function Shared.SetupClosing(gui: ScreenGui)
+
+end
+
+function Shared.SetupOpening(gui: ScreenGui, button: GuiButton)
+
+end
+
+function Shared.SetupHidingNotifications(openGui: ScreenGui, notificationHolder: Instance)
+
+end
+
+function Shared.HandleProgressBar(progressBar: Frame, percentCompleted: number, percentText: string?)
+
+end
+
+function Local.HideTemplates()
+
+end
+
+return Shared
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="LocalScript" referent="RBX936FB7372873429ABB1D60D62313A0EA">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Loader</string>
+				<token name="RunContext">0</token>
+				<string name="ScriptGuid">{50C24482-9A56-4416-BBE2-592985C260AD}</string>
+				<ProtectedString name="Source"><![CDATA[local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local ModuleLoader = require(ReplicatedStorage.ModuleLoader)
+
+ModuleLoader()
+]]></ProtectedString>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="Folder" referent="RBX124EC1DD0773419FA76C2742FE0D96BD">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+			<bool name="DefinesCapabilities">false</bool>
+			<string name="Name">ServerScriptService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="Folder" referent="RBX7BC048E06FE34F14912C0A76752C24F7">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<string name="Name">Services</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX0600A87B81BC44E1A1EAF03CFE904BAD">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+					<bool name="DefinesCapabilities">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">SkipsService</string>
+					<string name="ScriptGuid">{7471BCF0-B480-41D9-B7FD-EB5548176A4A}</string>
+					<ProtectedString name="Source"><![CDATA[local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local DataService = require(ServerScriptService.Services.PlayerDataService)
+local ProgressService = require(ServerScriptService.Services.ProgressService)
+local RespawnService = require(ServerScriptService.Services.RespawnService)
+local StagesConfig = require(ReplicatedStorage.Shared.Configs.Stages)
+local Remotes = ReplicatedStorage.Remotes
+
+local PlayerRewardTimes = {}
+
+local Local = {}
+local Shared = {}
+
+function Shared.OnStart()
+    task.spawn(Local.GiveSkip)
+
+    Remotes.SkipStage.OnServerEvent:Connect(Shared.SkipStage)
+
+    Players.PlayerRemoving:Connect(function(player: Player)
+        PlayerRewardTimes[player] = nil
+    end)
+end
+
+function Local.GiveSkip()
+    while true do
+        pcall(function()
+            for _, player in Players:GetPlayers() do
+                local nextSkipTime = PlayerRewardTimes[player]
+                if not nextSkipTime then
+                    PlayerRewardTimes[player] = os.time() + 120
+                    continue
+                end
+
+                local secondsLeft = nextSkipTime - os.time()
+                if secondsLeft <= 0 then
+                    local state = DataService.GetState(player)
+                    if not state then
+                        continue
+                    end
+
+                    local isVIP = state.vip
+                    local skipAction: DataService.UpdateDataAction = {
+                        type = "UpdateSkips",
+                        amount = if isVIP then 2 else 1,
+                    }
+
+                    DataService.UpdateState(player, skipAction)
+                    PlayerRewardTimes[player] = os.time() + 120
+                end
+            end
+        end)
+        task.wait(1)
+    end
+end
+
+function Shared.SkipStage(player: Player)
+    local state = DataService.GetState(player)
+    if not state then
+        return
+    end
+
+    local hasSkips = state.skips > 0
+    if not hasSkips then
+        return
+    end
+
+    local isMaxStage = state.stage >= StagesConfig.TOTAL_STAGES
+    if isMaxStage then
+        return
+    end
+
+    local newStage = state.stage + 1
+    local spawnLocation = StagesConfig.GetSpawnLocation(newStage)
+    if not spawnLocation then
+        return
+    end
+
+    ProgressService.TouchSpawnLocation(player, spawnLocation)
+    RespawnService.RespawnPlayer(player)
+
+    local skipAction: DataService.UpdateDataAction = {
+        type = "UpdateSkips",
+        amount = -1,
+    }
+    DataService.UpdateState(player, skipAction)
+end
+
+return Shared
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
+			<Item class="ModuleScript" referent="RBX97DCE424810F46519F50524F95764757">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+					<bool name="DefinesCapabilities">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">DataService</string>
+					<string name="ScriptGuid">{BF34450F-B36F-4345-9759-078C51AED751}</string>
+					<ProtectedString name="Source"><![CDATA[local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+
+local ProfileService = require(ReplicatedStorage.Packages["profileservice-fork"])
+local DataTemplate = require(ReplicatedStorage.Shared.PlayerData)
+local UpdateState = require(ReplicatedStorage.Shared.Functions.UpdateState)
+local Remotes = ReplicatedStorage.Remotes.PlayerData
+
+export type UpdateDataAction = UpdateState.UpdateDataAction
+
+local DATASTORE_NAME = "Production" -- DO NOT MODIFY
+
+if RunService:IsStudio() then
+    DATASTORE_NAME = "Testing"
+end
+
+local ProfileStore = ProfileService.GetProfileStore(DATASTORE_NAME, DataTemplate.DEFAULT_PLAYER_DATA)
+export type Profile = {
+    Data: UpdateState.PlayerData,
+    Release: () -> void
+ }
+local Profiles: { [Player] : Profile } = {}
+
+local Local = {}
+local Shared = {}
+
+Shared.ProfileLoaded = Instance.new("BindableEvent")
+
+function Shared.OnStart()
+    for _, player in Players:GetPlayers() do
+        Local.CreateProfile(player)
+    end
+
+    Players.PlayerAdded:Connect(Local.CreateProfile)
+    Players.PlayerRemoving:Connect(Local.RemoveProfile)
+
+    Remotes.GetData.OnServerInvoke = Local.FetchPlayerData
+end
+
+function Shared.GetState(player: Player)
+    local profile = Profiles[player]
+    if profile then
+        return profile.Data
+    end
+end
+
+function Shared.UpdateState(player: Player, action: UpdateState.UpdateDataAction)
+    local profile = Profiles[player]
+    if not profile then
+        return false
+    end
+
+    local function UpdateLeaderstats(action: UpdateState.UpdateDataAction)
+        if action.type == "UpdateStage" then
+            player.leaderstats.Stage.Value += action.amount
+        elseif action.type == "UpdateDeaths" then
+            player.leaderstats.Deaths.Value += action.amount
+        end
+    end
+
+    UpdateLeaderstats(action)
+    UpdateState(profile.Data, action)
+    Remotes.UpdateData:FireClient(player, action)
+end
+
+--
+
+function Local.CreateLeaderstats(player: Player, data: UpdateState.PlayerData)
+    local leaderstats = Instance.new("Folder", player)
+    leaderstats.Name = "leaderstats"
+
+    local stage = Instance.new("NumberValue", leaderstats)
+    stage.Name = "Stage"
+    stage.Value = data.stage
+
+    local rebirths = Instance.new("NumberValue", leaderstats)
+    rebirths.Name = "Rebirths"
+    rebirths.Value = data.rebirths
+end
+
+function Local.CreateProfile(player: Player)
+    local userId = player.UserId
+    local profileKey = `{userId}_Data`
+    local profile = ProfileStore:LoadProfileAsync(profileKey)
+
+    if not profile then
+        player:Kick()
+        return
+    end
+
+    profile:ListenToRelease(function()
+        Profiles[player] = nil
+        player:Kick()
+    end)
+
+    profile:AddUserId(userId)
+    profile:Reconcile()
+
+    Profiles[player] = profile
+    Local.CreateLeaderstats(player, profile.Data)
+    task.delay(1, function()
+        Shared.ProfileLoaded:Fire(player)
+    end)
+end
+
+function Local.RemoveProfile(player: Player)
+    local profile = Profiles[player]
+    if profile then
+        profile:Release()
+    end
+end
+
+function Local.FetchPlayerData(player: Player)
+    local profile = Profiles[player]
+    if not profile then
+        return false
+    end
+    return profile.Data
+end
+
+return Shared
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Script" referent="RBXB552755037B64DF680A99EB3C8F55092">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Loader</string>
+				<token name="RunContext">0</token>
+				<string name="ScriptGuid">{49986A1E-EA70-4571-A920-482D4E103130}</string>
+				<ProtectedString name="Source"><![CDATA[local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local ModuleLoader = require(ReplicatedStorage.ModuleLoader)
+
+ModuleLoader()
+]]></ProtectedString>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="Folder" referent="RBXF8F13EBF21BC410AA265B8AB8988E43D">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+			<bool name="DefinesCapabilities">false</bool>
+			<string name="Name">ReplicatedStorage</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="ModuleScript" referent="RBXA6BC61CE1DB343D89F73E43AAA42EE22">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">ModuleLoader</string>
+				<string name="ScriptGuid">{F3A46B67-0056-446D-8897-EF2E5D060D52}</string>
+				<ProtectedString name="Source"><![CDATA[local Players = game:GetService("Players")
+local ServerScriptService = game:GetService("ServerScriptService")
+local RunService = game:GetService("RunService")
+local StarterPlayer = game:GetService("StarterPlayer")
+local StarterPlayerScripts = StarterPlayer.StarterPlayerScripts
+
+local IsServer = RunService:IsServer()
+local RootDirectory = if IsServer then ServerScriptService else Players.LocalPlayer:WaitForChild("PlayerScripts")
+local ModuleDirectory = if IsServer then RootDirectory.Services else RootDirectory:WaitForChild("Controllers")
+
+local function RequireModule(moduleScript: Instance)
+	if moduleScript:IsA("ModuleScript") then
+		local import = require(moduleScript)
+
+		local onStart = import.OnStart
+		if onStart then
+			onStart()
+		end
+	end
+end
+
+return function()
+	if IsServer then
+		for _, child in ModuleDirectory:GetChildren() do
+			RequireModule(child)
+		end
+	else
+		for _, child in StarterPlayerScripts.Controllers:GetChildren() do
+			local module = ModuleDirectory:WaitForChild(child.Name)
+			RequireModule(module)
+		end
+	end
+end
+]]></ProtectedString>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -10,7 +10,9 @@ This is a simple framework used for creating more intuitively organized Roblox p
 
 ## Usage
 
-The easiest way to use this would be to download the `Module-Framework.rbxl` file from this repo or the releases page, then import that file into Roblox.
+The easiest way to use this would be to download the `Module-Framework-Game.rbxl` file from this repo or the releases page, which you should be able to open and access in Roblox Studio.
+
+Alternatively, you could download the `Module-Framework-Scripts.rbxmx` file and **import** that into Roblox Studio. Then move the contents of those folders into their respectively named locations.
 
 This framework comprises a single Module Script, Script, and Local Script.
 * ModuleLoader: is a module script stored inside of the Replicated Storage. This will be required by the server & client, which will then require all of our Service and Controller modules.
